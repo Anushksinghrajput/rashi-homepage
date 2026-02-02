@@ -22,6 +22,28 @@ Rashi takes a different approach. Our algorithms are designed from the ground up
 Powered by advanced Natural Language Processing algorithms, Rashi deciphers the language of data, identifying patterns, trends, and associations, and generating insights that matter for your business.
     `.trim(),
   },
+  "algorithmic-contextualizations": {
+    title: "Algorithmic Contextualizations and the future of insight.",
+    date: "2025-01-10",
+    content: `
+Where LLMs are predictive pattern-matchers, our algorithms are trained to extract low-level signal that connect dots with precision.
+
+Low-code dashboards to build contextual inferences and analytics of the topics you need to decode the truth. Fast, easily shared insights with real-time evolution and deep sources, custom built for your analysis needs.
+
+Rashi's approach to algorithmic contextualization enables analysts to slice data and curate inference any which way, decoding latent narrative intelligences. Subscribe to your inferences and stay ahead of topic evolution and unknown unknowns.
+    `.trim(),
+  },
+  "enterprise-decision-science": {
+    title: "Enterprise Decision-Science: Decode how narratives evolve.",
+    date: "2025-01-05",
+    content: `
+Run an instant and highly bespoke inference on the expanse of TikTok or YouTube, and build bespoke insights that will re-contextualize your most pressing decisions for strategy.
+
+Decode how narratives evolve, and contextualize narratives for a new class of deep algorithmic insights. Our algorithms reduce research time and costs while improving accuracy and speed, helping analysts discover more insights and patterns for higher quality, data-driven decisions.
+
+Powered by advanced Natural Language Processing, Rashi deciphers the language of data, identifying patterns, trends, and associations—delivering enterprise decision-science at scale.
+    `.trim(),
+  },
 };
 
 export default async function BlogPostPage({
@@ -58,7 +80,7 @@ export default async function BlogPostPage({
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            Blogs
+            Blog Archive
           </Link>
           <time
             dateTime={post.date}
