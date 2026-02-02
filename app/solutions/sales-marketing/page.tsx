@@ -1,0 +1,55 @@
+import Link from "next/link";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import StarfieldBackground from "../../components/StarfieldBackground";
+
+export default function SalesMarketingPage() {
+  return (
+    <div className="relative min-h-screen flex flex-col bg-black text-white">
+      <StarfieldBackground />
+      <Header />
+
+      <main className="relative z-10 flex-1 px-4 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-3xl">
+          <Link
+            href="/"
+            className="mb-8 inline-flex items-center gap-2 text-white/60 hover:text-[var(--neon-pink)]"
+          >
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+            Home
+          </Link>
+          <h1 className="text-3xl font-bold text-white sm:text-4xl">
+            Sales & Marketing
+          </h1>
+          <p className="mt-6 text-lg text-white/60">
+            Rashi delivers generative insights for sales and marketing teams.
+            Unlock deeper understanding of markets, competitors, and customer
+            voice—faster and with less bias.
+          </p>
+          <div className="mt-10">
+            <a
+              href="/#waitlist"
+              className="btn-gradient inline-flex rounded-full px-6 py-3 font-medium text-white"
+            >
+              Join Waitlist
+            </a>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+}

@@ -1,26 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
+  --muted: #94a3b8;
+  --border: #1e293b;
+  --card: #0a0a0a;
+  /* Neon gradient accent: pink/magenta → orange */
+  --neon-pink: #ff0080;
+  --neon-orange: #ff6b00;
+  --neon-yellow: #ffff00;
+  --neon-glow-pink: rgba(255, 0, 128, 0.5);
+  --neon-glow-orange: rgba(255, 107, 0, 0.4);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-script: var(--font-great-vibes), cursive;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Gradient CTA: pink (left) to orange (right) */
+.btn-gradient {
+  background: linear-gradient(90deg, var(--neon-pink) 0%, var(--neon-orange) 100%);
+  color: #ffffff;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.btn-gradient:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+}
+
+/* White CTA button with blue glow (gradient band) */
+.btn-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 40px rgba(59, 130, 246, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.btn-glow:hover {
+  box-shadow: 0 0 30px rgba(59, 130, 246, 0.8), 0 0 60px rgba(59, 130, 246, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Button pulse animation */
+@keyframes btn-pulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 128, 0.4); }
+  50% { box-shadow: 0 0 35px rgba(255, 0, 128, 0.7); }
+}
+.btn-pulse {
+  animation: btn-pulse 2s ease-in-out infinite;
+}
+
+/* Nav link underline animation */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.25s ease;
+}
+.nav-link:hover::after,
+.nav-link[data-active="true"]::after {
+  width: 100%;
+}
+
+/* Floating orb animation */
+@keyframes float-orb {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.25;
+  }
+  33% {
+    transform: translate(30px, -20px) scale(1.05);
+    opacity: 0.35;
+  }
+  66% {
+    transform: translate(-20px, 15px) scale(0.95);
+    opacity: 0.3;
+  }
+}
+
+.animate-float-orb {
+  animation: float-orb ease-in-out infinite;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--neon-pink);
+  outline-offset: 2px;
 }
