@@ -7,7 +7,7 @@ const CARDS = [
   {
     title: "Communications",
     description: "Impact of government policies on open-RAN initiatives",
-    bgColor: "bg-gray-600",
+    bgColor: "bg-slate-600",
     icon: "radio",
   },
   {
@@ -26,7 +26,7 @@ const CARDS = [
     title: "Macroeconomic Markets",
     description: "Understanding IPO performances of US companies that went public 8 quarters ago",
     bgColor: "bg-cyan-500",
-    icon: "globe",
+    icon: "chart",
   },
   {
     title: "Voice of Customer",
@@ -38,9 +38,12 @@ const CARDS = [
     title: "Macroeconomic Markets",
     description: "State of Colombian coffee product impact on global markets",
     bgColor: "bg-cyan-400",
-    icon: "globe",
+    icon: "chart",
   },
 ];
+
+const CARD_WIDTH = 300;
+const CARD_GAP = 24;
 
 function CardIcon({ icon }: { icon: string }) {
   if (icon === "radio") {
@@ -62,6 +65,13 @@ function CardIcon({ icon }: { icon: string }) {
     return (
       <svg className="h-8 w-8 flex-shrink-0 text-white" fill="currentColor" viewBox="0 0 24 24">
         <path d="M8 5v14l11-7z" />
+      </svg>
+    );
+  }
+  if (icon === "chart") {
+    return (
+      <svg className="h-8 w-8 flex-shrink-0 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     );
   }
@@ -87,8 +97,8 @@ export default function IntroducingRashiCarousel() {
   function updateScrollState() {
     const el = scrollRef.current;
     if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 0);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
+    setCanScrollLeft(el.scrollLeft > 2);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 2);
   }
 
   useEffect(() => {
@@ -100,52 +110,56 @@ export default function IntroducingRashiCarousel() {
   function scroll(direction: "left" | "right") {
     const el = scrollRef.current;
     if (!el) return;
-    el.scrollBy({ left: direction === "left" ? -320 : 320, behavior: "smooth" });
-    setTimeout(updateScrollState, 300);
+    const step = CARD_WIDTH + CARD_GAP;
+    el.scrollBy({ left: direction === "left" ? -step : step, behavior: "smooth" });
+    setTimeout(updateScrollState, 350);
   }
 
   return (
-    <section className="relative border-t border-white/10 px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section className="relative border-t border-white/10">
+      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
+        {/* Centered heading with clear vertical rhythm */}
         <motion.h2
-          initial={{ opacity: 0, y: 12 }}
+          initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center text-2xl font-bold text-white sm:text-3xl"
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5 }}
+          className="text-center text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
         >
           Introducing Rashi
         </motion.h2>
         <motion.p
-          initial={{ opacity: 0, y: 8 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mt-4 text-center text-lg font-semibold text-[var(--neon-pink)]"
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.08 }}
+          className="mt-5 text-center text-base font-semibold text-[var(--neon-pink)] sm:text-lg lg:mt-6"
         >
           Where ChatGPT is composing information, Rashi is analyzing information.
         </motion.p>
 
-        <div className="relative mt-12">
-          {/* Left nav */}
+        {/* Carousel with proper padding so arrows don't overlap content */}
+        <div className="relative mt-14 sm:mt-16 lg:mt-20">
+          {/* Left arrow — pink gradient, overlapping edge */}
           <button
             type="button"
             onClick={() => scroll("left")}
             onFocus={updateScrollState}
             aria-label="Scroll left"
-            className="absolute left-0 top-1/2 z-20 flex h-12 w-10 -translate-y-1/2 items-center justify-center rounded-l-lg bg-gradient-to-r from-[var(--neon-pink)]/80 to-transparent text-white transition-opacity hover:opacity-100 disabled:opacity-30"
+            className="absolute left-0 top-1/2 z-20 flex h-14 w-11 -translate-y-1/2 items-center justify-center rounded-l-xl bg-gradient-to-r from-[var(--neon-pink)]/90 to-transparent text-white shadow-lg transition-all hover:from-[var(--neon-pink)] hover:opacity-100 disabled:pointer-events-none disabled:opacity-30 sm:left-0 sm:h-16 sm:w-12"
             disabled={!canScrollLeft}
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
-          {/* Right nav */}
+          {/* Right arrow — matches design */}
           <button
             type="button"
             onClick={() => scroll("right")}
             onFocus={updateScrollState}
             aria-label="Scroll right"
-            className="absolute right-0 top-1/2 z-20 flex h-12 w-10 -translate-y-1/2 items-center justify-center rounded-r-lg bg-white/10 text-white transition-opacity hover:bg-white/20 disabled:opacity-30"
+            className="absolute right-0 top-1/2 z-20 flex h-14 w-11 -translate-y-1/2 items-center justify-center rounded-r-xl border border-white/20 bg-white/10 text-white transition-all hover:bg-white/20 disabled:pointer-events-none disabled:opacity-30 sm:right-0 sm:h-16 sm:w-12"
             disabled={!canScrollRight}
           >
             <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -156,23 +170,25 @@ export default function IntroducingRashiCarousel() {
           <div
             ref={scrollRef}
             onScroll={updateScrollState}
-            className="flex gap-6 overflow-x-auto scroll-smooth px-2 py-4 pb-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth px-1 py-4 pb-6 sm:gap-8 sm:px-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            style={{ scrollPaddingLeft: "1rem", scrollPaddingRight: "1rem" }}
           >
             {CARDS.map((card, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="min-w-[280px] max-w-[280px] flex-shrink-0 rounded-xl border border-white/10 bg-black/40 p-0 shadow-lg transition-all hover:border-white/20 hover:shadow-[0_0_30px_rgba(255,0,128,0.15)]"
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.4, delay: i * 0.06 }}
+                className="introducing-card-hover min-h-[200px] flex-shrink-0 snap-start rounded-xl border border-white/10 bg-black/40 shadow-lg sm:min-h-[220px]"
+                style={{ width: CARD_WIDTH, maxWidth: "calc(100vw - 3rem)" }}
               >
-                <div className={`rounded-xl ${card.bgColor} p-6`}>
+                <div className={`flex h-full min-h-[200px] flex-col rounded-xl ${card.bgColor} p-6 sm:min-h-[220px] sm:p-6`}>
                   <div className="flex items-start gap-4">
                     <CardIcon icon={card.icon} />
-                    <div>
-                      <h3 className="font-bold text-white">{card.title}</h3>
-                      <p className="mt-2 text-sm font-normal leading-snug text-white/95">{card.description}</p>
+                    <div className="min-w-0 flex-1">
+                      <h3 className="font-bold text-white sm:text-lg">{card.title}</h3>
+                      <p className="mt-2 text-sm leading-snug text-white/95 line-clamp-2 sm:mt-3">{card.description}</p>
                     </div>
                   </div>
                 </div>
