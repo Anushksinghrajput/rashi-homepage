@@ -32,6 +32,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+  line-height: 1.6;
 }
 
 /* Gradient CTA: pink (left) to orange (right) */

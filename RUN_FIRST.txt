@@ -1,0 +1,33 @@
+========================================
+  HOW TO RUN THE RASHI HOMEPAGE LOCALLY
+========================================
+
+Do NOT open this folder with "Live Server" or open 127.0.0.1:5500
+(that only shows a file list, not the website).
+
+STEP 1: Open Terminal
+  - Mac: Terminal app, or in VS Code/Cursor: Terminal → New Terminal
+  - Windows: Command Prompt or PowerShell, or Terminal in VS Code
+
+STEP 2: Go to this project folder
+  cd /Users/anushkasinghrajput/Desktop/rashi-homepage
+
+STEP 3: Start the app
+  npm run dev
+
+STEP 4: Look at the terminal output. You will see something like:
+  ▲ Next.js 16.x.x
+  - Local:    http://localhost:3000
+  - Network:  http://192.168.x.x:3000
+  ✓ Ready in 1.2s
+
+STEP 5: Open that URL in your browser
+  - Click the link, or copy "http://localhost:3000" (or 3001 if 3000 is in use)
+  - Paste into Chrome/Edge/Safari address bar and press Enter
+
+You should see the Rashi homepage (dark theme, "Generative Insights at your Fingertips").
+
+If you see "address already in use":
+  - Another app is using the port. Either close it, or use the other port number shown (e.g. 3001).
+
+========================================

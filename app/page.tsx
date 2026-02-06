@@ -1,18 +1,19 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
+import { CONTAINER, CONTAINER_NARROW, SECTION_BORDER, SECTION_PADDING, SECTION_PADDING_TIGHT } from "@/lib/layout";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ContactForm from "./components/ContactForm";
 import WaitlistForm from "./components/WaitlistForm";
 import RashiLogo from "./components/RashiLogo";
 import StarfieldBackground from "./components/StarfieldBackground";
-import FlowDiagram from "./components/FlowDiagram";
+import HowRashiThinks from "./components/HowRashiThinks";
 import DataToInsightsPipeline from "./components/DataToInsightsPipeline";
 import GradientCtaBand from "./components/GradientCtaBand";
 import IntroducingRashiCarousel from "./components/IntroducingRashiCarousel";
-import HiringAccordion from "./components/HiringAccordion";
 import ScrollReveal from "./components/ScrollReveal";
 
 const industries =
@@ -25,26 +26,26 @@ export default function Home() {
       <Header />
 
       <main className="relative z-10">
-        {/* Hero */}
+        {/* Hero — no top border; next section provides boundary */}
         <section
           id="hero"
-          className="relative overflow-hidden px-4 py-20 sm:px-6 sm:py-28 lg:px-8 lg:py-36"
+          className={`relative overflow-hidden ${CONTAINER} py-20 sm:py-28 lg:py-36`}
         >
-          <div className="mx-auto max-w-6xl">
-            <div className="max-w-4xl">
-              <motion.div
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <RashiLogo variant="hero" href="/" className="mb-8" />
-              </motion.div>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
-              >
+          <div className="max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8"
+            >
+              <RashiLogo variant="heroLarge" href="/" />
+            </motion.div>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
+            >
                 <span className="bg-gradient-to-r from-[var(--neon-pink)] to-[#ff4080] bg-clip-text text-transparent">
                   Generative
                 </span>{" "}
@@ -74,18 +75,36 @@ export default function Home() {
                   Join Waitlist
                 </a>
               </motion.div>
-            </div>
           </div>
         </section>
 
-        {/* Curved flow diagram */}
-        <FlowDiagram />
+        {/* How Rashi Thinks — accordion insights */}
+        <HowRashiThinks />
 
-        {/* Value proposition - Our algos empower... + paragraphs with patterns highlight */}
-        <section className="relative border-t border-white/10 px-4 py-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-left">
+        {/* Flow diagram: Universe of Data → Unique Insights → Accelerated Decision Making */}
+        <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
+          <ScrollReveal>
+            <h2 className="sr-only">
+              Data flow: Universe of Data to Unique Insights to Accelerated Decision Making
+            </h2>
+            <div className="mx-auto max-w-5xl">
+              <Image
+                src="/flow-diagram.svg"
+                alt="Universe of Data, Analyze & Cluster; Unique Insights, Extract & Generate; Accelerated Decision Making, Interpret & Learn"
+                width={1920}
+                height={1080}
+                className="h-auto w-full rounded-lg object-contain"
+                priority={false}
+              />
+            </div>
+          </ScrollReveal>
+        </section>
+
+        {/* Value proposition */}
+        <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
+          <div className="max-w-4xl text-left">
             <ScrollReveal>
-              <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+              <h2 className="text-3xl font-bold leading-snug text-white sm:text-4xl lg:text-5xl">
                 Our algos empower people to make better decisions faster
               </h2>
             </ScrollReveal>
@@ -118,6 +137,25 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Data sources to algorithmic insights — tree vision (after our algos text) */}
+        <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
+          <ScrollReveal>
+            <h2 className="sr-only">
+              From data sources to real-time algorithmic insights across industries
+            </h2>
+            <div className="mx-auto max-w-5xl">
+              <Image
+                src="/rashi-tree-vision.png"
+                alt="Define your data sources and topics, process with Rashi, and get algorithmic insights that update in real-time across Tech, Manufacturing, Medicine, Retail, Telco, Media, and Financial Markets"
+                width={1200}
+                height={675}
+                className="h-auto w-full rounded-lg object-contain"
+                priority={false}
+              />
+            </div>
+          </ScrollReveal>
+        </section>
+
         {/* Data-to-insights pipeline graphic */}
         <DataToInsightsPipeline />
 
@@ -128,8 +166,8 @@ export default function Home() {
         <IntroducingRashiCarousel />
 
         {/* Text: Rashi is developing... + LLM paragraph */}
-        <section className="relative border-t border-white/10 px-4 py-16 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-4xl text-left">
+        <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING_TIGHT} ${CONTAINER}`}>
+          <div className="max-w-4xl text-left">
             <ScrollReveal>
               <p className="text-lg font-medium leading-relaxed text-white sm:text-xl">
                 Rashi is developing customer-centric insights for analysts
@@ -166,11 +204,11 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Blogs - heading, neon robot visuals, text block */}
-        <section className="relative border-t border-white/10 bg-white/[0.02] px-4 py-20 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-6xl">
+        {/* Blogs */}
+        <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER} bg-white/[0.02]`}>
+          <div>
             <ScrollReveal>
-              <h2 className="text-center text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="text-center text-2xl font-bold leading-snug text-white sm:text-3xl">
                 Blogs
               </h2>
             </ScrollReveal>
@@ -217,22 +255,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* We are Hiring - accordion */}
-        <HiringAccordion />
-
-        {/* Contact us - centered logo (neon blue Rashi), form, Send (solid neon pink) */}
+        {/* Contact us */}
         <section
           id="contact"
-          className="relative border-t border-white/10 bg-white/[0.02] px-4 py-20 sm:px-6 lg:px-8"
+          className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER_NARROW} bg-white/[0.02]`}
         >
-          <div className="mx-auto max-w-2xl text-center">
+          <div className="text-center">
             <ScrollReveal>
-              <div className="flex justify-center">
-                <RashiLogo variant="contact" href="/" className="mb-8" />
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <h2 className="text-2xl font-bold text-white">Contact us</h2>
+              <h2 className="text-2xl font-bold leading-snug text-white">Contact us</h2>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>
               <p className="mt-2 text-white/60">
@@ -250,10 +280,10 @@ export default function Home() {
         {/* Waitlist */}
         <section
           id="waitlist-form"
-          className="relative border-t border-white/10 px-4 py-20 sm:px-6 lg:px-8"
+          className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER_NARROW}`}
         >
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-2xl font-bold text-white">Join the Waitlist</h2>
+          <div className="text-center">
+            <h2 className="text-2xl font-bold leading-snug text-white">Join the Waitlist</h2>
             <p className="mt-2 text-white/60">
               Be the first to know when Rashi launches.
             </p>

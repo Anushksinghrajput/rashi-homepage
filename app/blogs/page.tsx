@@ -1,5 +1,6 @@
 "use client";
 
+import { CONTAINER, SECTION_PADDING_TIGHT } from "@/lib/layout";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import StarfieldBackground from "../components/StarfieldBackground";
@@ -39,11 +40,9 @@ export default function BlogArchivePage() {
       <Header />
 
       <main className="relative z-10 flex-1">
-        {/* Consistent vertical rhythm: same padding as main site */}
-        <div className="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
-          {/* Left-aligned "Blog Archive" heading with strong typographic hierarchy */}
+        <div className={`${SECTION_PADDING_TIGHT} ${CONTAINER}`}>
           <header className="mb-10 sm:mb-12 lg:mb-16">
-            <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-bold leading-snug tracking-tight text-white sm:text-4xl lg:text-5xl">
               Blog Archive
             </h1>
             <p className="mt-4 max-w-2xl text-base text-white/60 sm:text-lg">

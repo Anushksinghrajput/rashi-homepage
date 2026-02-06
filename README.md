@@ -1,5 +1,13 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Run locally
+
+**Do not use Live Server or open the folder on port 5500** — that shows a file listing, not the app. Use the Next.js dev server:
+
+1. In the project folder run: `npm run dev`
+2. Note the URL in the terminal (e.g. `Local: http://localhost:3000` or `http://localhost:3001`)
+3. **Open that URL in your browser** to view the Rashi homepage.
+
 ## Getting Started
 
 First, run the development server:
@@ -14,7 +22,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the URL shown in the terminal (usually [http://localhost:3000](http://localhost:3000)) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 

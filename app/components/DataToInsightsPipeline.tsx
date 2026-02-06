@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { CONTAINER, SECTION_BORDER, SECTION_PADDING } from "@/lib/layout";
 import RashiLogo from "./RashiLogo";
 
 const DATA_ICONS = [
@@ -30,8 +31,8 @@ const INSIGHT_NODES = [
 
 export default function DataToInsightsPipeline() {
   return (
-    <section className="relative px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
+      <div>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -57,11 +58,11 @@ export default function DataToInsightsPipeline() {
               ))}
             </div>
 
-            {/* Arrow + Rashi logo (center) */}
+            {/* Center: brand label only (single logo per page is in navbar) */}
             <div className="flex items-center gap-4">
               <div className="h-px w-12 bg-white/30 sm:w-16" />
-              <div className="rounded-xl border-2 border-[var(--neon-pink)] p-3 shadow-[0_0_30px_rgba(255,0,128,0.3)]">
-                <RashiLogo variant="navbar" href="/" className="[&_span]:text-white" />
+              <div className="rounded-xl border-2 border-[var(--neon-pink)] px-6 py-3 shadow-[0_0_30px_rgba(255,0,128,0.3)]">
+                <RashiLogo variant="contact" href="/" className="h-10 w-auto object-contain" />
               </div>
               <div className="h-px w-12 bg-white/30 sm:w-16" />
             </div>

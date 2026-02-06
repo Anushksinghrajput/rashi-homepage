@@ -1,7 +1,11 @@
 import Link from "next/link";
+import Image from "next/image";
+
+const RASHI_LOGO_SRC =
+  "https://rashi.ai/wp-content/uploads/2023/06/Rashi-Logo-Transparent-e1685619567554-1024x632.png";
 
 type RashiLogoProps = {
-  variant?: "navbar" | "hero" | "contact";
+  variant?: "navbar" | "hero" | "contact" | "heroLarge" | "toolbar";
   href?: string;
   className?: string;
 };
@@ -9,74 +13,29 @@ type RashiLogoProps = {
 export default function RashiLogo({ variant = "navbar", href = "/", className = "" }: RashiLogoProps) {
   const isNavbar = variant === "navbar";
   const isHero = variant === "hero";
-  const isContact = variant === "contact";
-  const symbolSize = isHero ? 64 : isContact ? 56 : 36;
-  const textSize = isNavbar ? "text-2xl" : isHero ? "text-4xl sm:text-5xl" : "text-3xl sm:text-4xl";
-  const textColor = isContact ? "text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.6)]" : "text-white";
+  const isHeroLarge = variant === "heroLarge";
+  const isToolbar = variant === "toolbar";
+  const width = isHeroLarge ? 420 : isHero ? 200 : isNavbar ? 120 : isToolbar ? 80 : 140;
+  const height = isHeroLarge ? 250 : isHero ? 124 : isNavbar ? 74 : isToolbar ? 50 : 87;
 
   const content = (
-    <span className={`inline-flex items-center gap-2 ${className}`}>
-      {/* Abstract symbol: stylized Resh with neon pink outer + yellow inner glow */}
-      <svg
-        width={symbolSize}
-        height={symbolSize}
-        viewBox="0 0 48 48"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        className="flex-shrink-0"
-        aria-hidden
-      >
-        <defs>
-          <filter id="rashi-glow-pink" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
-            <feFlood floodColor="#ff0080" floodOpacity="0.6" result="color" />
-            <feComposite in="color" in2="blur" operator="in" result="glow" />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <filter id="rashi-glow-yellow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="0.8" result="blur" />
-            <feFlood floodColor="#ffff00" floodOpacity="0.5" result="color" />
-            <feComposite in="color" in2="blur" operator="in" result="glow" />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-        {/* Outer outline: pink with glow - stylized Resh (vertical, rounded, wider at bottom) */}
-        <path
-          d="M24 6C32 6 38 11 38 20V40C38 44 34 46 24 46C14 46 10 44 10 40V20C10 11 16 6 24 6Z"
-          stroke="#ff0080"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          filter="url(#rashi-glow-pink)"
-        />
-        {/* Inner outline: yellow */}
-        <path
-          d="M24 6C32 6 38 11 38 20V40C38 44 34 46 24 46C14 46 10 44 10 40V20C10 11 16 6 24 6Z"
-          stroke="#ffff00"
-          strokeWidth="1"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          fill="none"
-          filter="url(#rashi-glow-yellow)"
-        />
-      </svg>
-      {/* Script text "Rashi" - contact variant uses neon blue/cyan glow */}
-      <span className={`font-[family-name:var(--font-great-vibes)] font-normal ${textColor} ${textSize}`}>
-        Rashi
-      </span>
-    </span>
+    <Image
+      src={RASHI_LOGO_SRC}
+      alt="Rashi"
+      width={width}
+      height={height}
+      className={`object-contain object-left ${className}`}
+      sizes={isHeroLarge ? "420px" : isHero ? "(max-width: 640px) 160px, 200px" : isNavbar ? "120px" : isToolbar ? "80px" : "140px"}
+      priority={isNavbar || isHeroLarge || isToolbar}
+    />
   );
 
   if (href) {
     return (
-      <Link href={href} className="inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon-pink)] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded">
+      <Link
+        href={href}
+        className="inline-flex items-center focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--neon-pink)] focus-visible:ring-offset-2 focus-visible:ring-offset-black rounded"
+      >
         {content}
       </Link>
     );

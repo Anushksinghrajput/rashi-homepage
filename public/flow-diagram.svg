@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080" preserveAspectRatio="xMidYMid meet" style="width: 100%; height: auto;">
+  <defs>
+    <clipPath id="flow-clip-main"><rect width="1920" height="1080" x="0" y="0"/></clipPath>
+    <clipPath id="flow-clip-8"><path d="M0,0 L1920,0 L1920,1080 L0,1080z"/></clipPath>
+    <clipPath id="flow-clip-24"><path d="M0,0 L1920,0 L1920,1080 L0,1080z"/></clipPath>
+    <clipPath id="flow-clip-37"><path d="M0,0 L1920,0 L1920,1080 L0,1080z"/></clipPath>
+    <marker id="flow-arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path fill="rgb(255,255,255)" d="M0 0 L10 5 L0 10 Z"/>
+    </marker>
+    <!-- Clip line at orange circle left edge (viewBox x=1269); curve group has translate(960,540) so 1269-960=309 -->
+    <clipPath id="flow-clip-line"><rect x="-960" y="-540" width="1269" height="1080"/></clipPath>
+  </defs>
+  <g clip-path="url(#flow-clip-main)">
+    <g transform="matrix(1,0,0,1,960,540)" clip-path="url(#flow-clip-line)">
+      <path stroke-linecap="butt" stroke-linejoin="miter" fill-opacity="0" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="4" d="M-792.857,5.143 C-792.857,5.143 -533.142,-642.858 -260.571,2.571 C12,648 222.857,7.714 228,0 C232.963,-7.444 427.106,-603.984 704.128,-67.971" marker-end="url(#flow-arrow)"/>
+    </g>
+    <g clip-path="url(#flow-clip-37)" transform="matrix(1,0,0,1,0,0)">
+      <g transform="matrix(1.07,0,0,1.07,504,286)">
+        <g transform="matrix(1,0,0,1,-66.773,222.555)">
+          <path fill="rgb(238,11,94)" fill-opacity="1" d="M0,-165 C91.0634994506836,-165 165,-91.0634994506836 165,0 C165,91.0634994506836 91.0634994506836,165 0,165 C-91.0634994506836,165 -165,91.0634994506836 -165,0 C-165,-91.0634994506836 -91.0634994506836,-165 0,-165z"/>
+        </g>
+      </g>
+      <text fill="rgb(235,235,235)" font-size="48" font-family="Helvetica,Arial,sans-serif" font-weight="700" x="242.6" y="789.26">Analyze &amp; Cluster</text>
+      <text fill="rgb(255,255,255)" font-size="48" font-family="Helvetica,Arial,sans-serif" font-weight="700" text-anchor="middle" x="434" y="520">Universe of Data</text>
+    </g>
+    <g clip-path="url(#flow-clip-24)" transform="matrix(1,0,0,1,0,0)">
+      <text fill="rgb(235,235,235)" font-size="48" font-family="Helvetica,Arial,sans-serif" font-weight="700" x="720.73" y="317.74">Extract &amp; Generate</text>
+      <g transform="matrix(1.07,0,0,1.07,1016,329)">
+        <g transform="matrix(1,0,0,1,-66.773,222.555)">
+          <path fill="rgb(255,255,255)" fill-opacity="1" d="M0,-165 C91.063,-165 165,-91.063 165,0 C165,91.063 91.063,165 0,165 C-91.063,165 -165,91.063 -165,0 C-165,-91.063 -91.063,-165 0,-165z"/>
+        </g>
+      </g>
+      <text fill="rgb(0,0,0)" font-size="48" font-family="Helvetica,Arial,sans-serif" font-weight="700" text-anchor="middle" x="943" y="554">Unique Insights</text>
+    </g>
+    <g clip-path="url(#flow-clip-8)" transform="matrix(1,0,0,1,0,0)">
+      <text fill="rgb(235,235,235)" font-size="48" font-family="Helvetica,Arial,sans-serif" font-weight="700" x="1264.15" y="794.54">Interpret &amp; Learn</text>
+      <g transform="matrix(1.07,0,0,1.07,1517,293)">
+        <g transform="matrix(1,0,0,1,-66.773,222.555)">
+          <path fill="rgb(255,167,14)" fill-opacity="1" d="M0,-165 C91.0634994506836,-165 165,-91.0634994506836 165,0 C165,91.0634994506836 91.0634994506836,165 0,165 C-91.0634994506836,165 -165,91.0634994506836 -165,0 C-165,-91.0634994506836 -91.0634994506836,-165 0,-165z"/>
+        </g>
+      </g>
+      <text fill="rgb(255,255,255)" font-size="32" font-family="Helvetica,Arial,sans-serif" font-weight="700" text-anchor="middle" x="1445.56" y="518">Accelerated</text><text fill="rgb(255,255,255)" font-size="32" font-family="Helvetica,Arial,sans-serif" font-weight="700" text-anchor="middle" x="1445.56" y="548">Decision Making</text>
+    </g>
+  </g>
+</svg>

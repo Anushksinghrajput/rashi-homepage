@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CONTAINER, SECTION_PADDING } from "@/lib/layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import StarfieldBackground from "../../components/StarfieldBackground";
@@ -9,8 +10,8 @@ export default function ProductDesignPage() {
       <StarfieldBackground />
       <Header />
 
-      <main className="relative z-10 flex-1 px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-3xl">
+      <main className={`relative z-10 flex-1 ${SECTION_PADDING} ${CONTAINER}`}>
+        <div className="max-w-3xl">
           <Link
             href="/"
             className="mb-8 inline-flex items-center gap-2 text-white/60 hover:text-[var(--neon-pink)]"

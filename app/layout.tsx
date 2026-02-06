@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Great_Vibes } from "next/font/google";
 import "./globals.css";
+import TopToolbar from "./components/TopToolbar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -39,6 +40,7 @@ export default function RootLayout({
         <a href="#hero" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--neon-pink)] focus:px-4 focus:py-2 focus:text-white">
           Skip to content
         </a>
+        <TopToolbar />
         {children}
       </body>
     </html>

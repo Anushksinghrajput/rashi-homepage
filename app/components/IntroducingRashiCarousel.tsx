@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { CONTAINER, SECTION_BORDER, SECTION_PADDING } from "@/lib/layout";
 
 const CARDS = [
   {
@@ -116,15 +117,14 @@ export default function IntroducingRashiCarousel() {
   }
 
   return (
-    <section className="relative border-t border-white/10">
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        {/* Centered heading with clear vertical rhythm */}
+    <section className={`relative ${SECTION_BORDER}`}>
+      <div className={`${SECTION_PADDING} ${CONTAINER}`}>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5 }}
-          className="text-center text-2xl font-bold text-white sm:text-3xl lg:text-4xl"
+          className="text-center text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl"
         >
           Introducing Rashi
         </motion.h2>

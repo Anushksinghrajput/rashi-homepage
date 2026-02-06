@@ -2,14 +2,12 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CONTAINER, SECTION_BORDER, SECTION_PADDING } from "@/lib/layout";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import StarfieldBackground from "../../components/StarfieldBackground";
-import RashiLogo from "../../components/RashiLogo";
 import ScrollReveal from "../../components/ScrollReveal";
 
-const SECTION_PADDING = "py-16 sm:py-20 lg:py-24";
-const CONTAINER = "mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8";
 const GRID_GAP = "gap-8 lg:gap-12";
 
 export default function SalesMarketingPage() {
@@ -58,8 +56,10 @@ export default function SalesMarketingPage() {
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5, delay: 0.15 }}
+                className="rounded-xl border border-white/20 bg-white/5 px-8 py-6 text-center"
               >
-                <RashiLogo variant="hero" href="/" />
+                <p className="text-sm font-medium uppercase tracking-wider text-white/60">Generative insights</p>
+                <p className="mt-1 text-lg font-semibold text-white">at your fingertips</p>
               </motion.div>
             </div>
           </div>
@@ -74,8 +74,8 @@ export default function SalesMarketingPage() {
           </div>
         </section>
 
-        {/* Your Influencer + thumbnails — symmetrical grid */}
-        <section className={`${SECTION_PADDING} ${CONTAINER} border-t border-white/10`}>
+        {/* Your Influencer + thumbnails */}
+        <section className={`${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
           <div className={`grid grid-cols-1 ${GRID_GAP} lg:grid-cols-2`}>
             <ScrollReveal>
               <div className="flex min-h-[200px] items-center justify-center rounded-xl bg-amber-500/90 px-8 py-12 text-center sm:min-h-[240px]">
@@ -122,7 +122,7 @@ export default function SalesMarketingPage() {
           <div className={`mt-12 grid grid-cols-1 ${GRID_GAP} lg:grid-cols-[auto_auto_1fr] lg:items-center`}>
             <ScrollReveal delay={0.1}>
               <div className="flex justify-center">
-                <RashiLogo variant="navbar" href="/" />
+                <span className="rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-semibold text-white">Rashi</span>
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.15}>

@@ -2,120 +2,200 @@
 
 import { motion } from "framer-motion";
 
+/**
+ * Exact replica of Rashi.ai Lottie flow diagram (1920×1080).
+ * - White curved path (stroke 4) with draw animation + directional arrow at end
+ * - Left: pink circle rgb(238,11,94) — "Universe of Data" (white), "Analyze & Cluster" (gray) below
+ * - Middle: white circle — "Unique Insights" (black), "Extract & Generate" (gray) above
+ * - Right: orange circle rgb(255,167,14) — "Accelerated Decision Making" (white), "Interpret & Learn" (gray) below
+ */
+const VIEWBOX = "0 0 1920 1080";
+
+// Exact path from Lottie (centered at 960,540): ends at 702.672,-70.778
+const CURVE_PATH =
+  "M-792.857,5.143 C-792.857,5.143 -533.142,-642.858 -260.571,2.571 C12,648 222.857,7.714 228,0 C232.954,-7.431 426.426,-601.895 702.672,-70.778";
+
 export default function FlowDiagram() {
   return (
-    <section className="relative px-4 py-20 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl">
+    <section
+      className="relative border-t border-white/10 px-4 py-16 sm:py-20 lg:py-24"
+      aria-labelledby="flow-heading"
+    >
+      <div className="mx-auto max-w-7xl">
+        <h2 id="flow-heading" className="sr-only">
+          Data flow: Universe of Data to Unique Insights to Accelerated Decision Making
+        </h2>
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6 }}
-          className="relative flex flex-wrap items-center justify-center gap-8 sm:gap-12 lg:gap-16"
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.5 }}
+          className="relative"
         >
-          {/* First circle - Universe of Data (hot pink) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="relative z-10 flex flex-col items-center"
+          <svg
+            viewBox={VIEWBOX}
+            preserveAspectRatio="xMidYMid meet"
+            className="h-auto w-full min-h-[280px] sm:min-h-[340px] md:min-h-[400px] lg:min-h-[480px]"
+            aria-hidden
           >
-            <div className="flex h-32 w-32 items-center justify-center rounded-full bg-[#ff0080] shadow-[0_0_40px_rgba(255,0,128,0.4)] sm:h-40 sm:w-40">
-              <span className="max-w-[90%] text-center text-sm font-bold text-white sm:text-base">
-                Universe of Data
-              </span>
-            </div>
-            <span className="mt-3 text-sm font-medium text-white/90">Analyze & Cluster</span>
-          </motion.div>
+            <defs>
+              <clipPath id="flow-clip">
+                <rect width="1920" height="1080" x="0" y="0" />
+              </clipPath>
+              <marker
+                id="flow-arrow"
+                markerWidth="10"
+                markerHeight="10"
+                refX="9"
+                refY="5"
+                orient="auto"
+              >
+                <path
+                  fill="rgb(255,255,255)"
+                  d="M0 0 L10 5 L0 10 Z"
+                />
+              </marker>
+            </defs>
+            <g clipPath="url(#flow-clip)">
+              {/* Curve: group centered at (960,540) */}
+              <g transform="translate(960, 540)">
+                <motion.path
+                  d={CURVE_PATH}
+                  fill="none"
+                  stroke="rgb(255,255,255)"
+                  strokeWidth="4"
+                  strokeLinecap="butt"
+                  strokeLinejoin="miter"
+                  strokeOpacity="1"
+                  markerEnd="url(#flow-arrow)"
+                  initial={{ pathLength: 0, opacity: 0.7 }}
+                  whileInView={{ pathLength: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1.4, ease: "easeInOut" }}
+                />
+              </g>
 
-          {/* Animated wave line + Extract & Generate label */}
-          <div className="relative hidden flex-shrink-0 items-center lg:flex" style={{ width: 140 }}>
-            <span className="absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-sm font-medium text-white/90">
-              Extract & Generate
-            </span>
-            <svg
-              viewBox="0 0 140 80"
-              className="h-20 w-full text-white"
-              aria-hidden
-            >
-              <motion.path
-                d="M 0 20 Q 35 0 70 20 T 140 20"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0.6 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2 }}
-              />
-              <motion.path
-                d="M 120 18 L 140 20 L 120 22 Z"
-                fill="currentColor"
+              {/* Node 1: Pink circle — Universe of Data */}
+              <g transform="translate(504, 286) scale(1.07) translate(-66.77, 222.55)">
+                <motion.circle
+                  r="165"
+                  fill="rgb(238,11,94)"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.1 }}
+                />
+              </g>
+              <motion.g
+                fill="rgb(255,255,255)"
+                fontSize="48"
+                fontFamily="Helvetica, Arial, sans-serif"
+                fontWeight="700"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 1, duration: 0.3 }}
-              />
-            </svg>
-          </div>
-
-          {/* Second circle - Unique Insights (white) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="relative z-10 flex flex-col items-center"
-          >
-            <div className="flex h-32 w-32 items-center justify-center rounded-full bg-white shadow-[0_0_40px_rgba(255,255,255,0.2)] sm:h-40 sm:w-40">
-              <span className="max-w-[90%] text-center text-sm font-bold text-black sm:text-base">
-                Unique Insights
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Second segment of wave */}
-          <div className="relative hidden flex-shrink-0 items-center lg:flex" style={{ width: 140 }}>
-            <svg viewBox="0 0 140 80" className="h-20 w-full text-white" aria-hidden>
-              <motion.path
-                d="M 0 20 Q 35 40 70 20 T 140 20"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                initial={{ pathLength: 0, opacity: 0.6 }}
-                whileInView={{ pathLength: 1, opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, delay: 0.2 }}
-              />
-              <motion.path
-                d="M 120 18 L 140 20 L 120 22 Z"
-                fill="currentColor"
+                transition={{ delay: 0.3, duration: 0.4 }}
+              >
+                <text x="434" y="520" textAnchor="middle">
+                  Universe of Data
+                </text>
+              </motion.g>
+              <motion.g
+                fill="rgb(235,235,235)"
+                fontSize="48"
+                fontFamily="Helvetica, Arial, sans-serif"
+                fontWeight="700"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: 1.2, duration: 0.3 }}
-              />
-            </svg>
-          </div>
+                transition={{ delay: 0.35, duration: 0.4 }}
+              >
+                <text x="242.6" y="789.26" textAnchor="start">
+                  Analyze &amp; Cluster
+                </text>
+              </motion.g>
 
-          {/* Third circle - Accelerated Decision Making (orange/amber) */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="relative z-10 flex flex-col items-center"
-          >
-            <div className="flex h-32 w-32 items-center justify-center rounded-full bg-[#ff8c00] shadow-[0_0_40px_rgba(255,140,0,0.4)] sm:h-40 sm:w-40">
-              <span className="max-w-[90%] text-center text-sm font-bold text-white sm:text-base">
-                Accelerated Decision Making
-              </span>
-            </div>
-            <span className="mt-3 text-sm font-medium text-white/90">Interpret & Learn</span>
-          </motion.div>
+              {/* Node 2: White circle — Unique Insights */}
+              <g transform="translate(1016, 329) scale(1.07) translate(-66.77, 222.55)">
+                <motion.circle
+                  r="165"
+                  fill="rgb(255,255,255)"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                />
+              </g>
+              <motion.g
+                fill="rgb(0,0,0)"
+                fontSize="48"
+                fontFamily="Helvetica, Arial, sans-serif"
+                fontWeight="700"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.4 }}
+              >
+                <text x="943" y="554" textAnchor="middle">
+                  Unique Insights
+                </text>
+              </motion.g>
+              <motion.g
+                fill="rgb(235,235,235)"
+                fontSize="48"
+                fontFamily="Helvetica, Arial, sans-serif"
+                fontWeight="700"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.25, duration: 0.4 }}
+              >
+                <text x="720.73" y="317.74" textAnchor="start">
+                  Extract &amp; Generate
+                </text>
+              </motion.g>
+
+              {/* Node 3: Orange circle — Accelerated Decision Making */}
+              <g transform="translate(1517, 293) scale(1.07) translate(-66.77, 222.55)">
+                <motion.circle
+                  r="165"
+                  fill="rgb(255,167,14)"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                />
+              </g>
+              <motion.g
+                fill="rgb(255,255,255)"
+                fontSize="45"
+                fontFamily="Helvetica, Arial, sans-serif"
+                fontWeight="700"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.45, duration: 0.4 }}
+              >
+                <text x="1445" y="501" textAnchor="middle">
+                  Accelerated Decision Making
+                </text>
+              </motion.g>
+              <motion.g
+                fill="rgb(235,235,235)"
+                fontSize="48"
+                fontFamily="Helvetica, Arial, sans-serif"
+                fontWeight="700"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.4 }}
+              >
+                <text x="1264.15" y="794.54" textAnchor="start">
+                  Interpret &amp; Learn
+                </text>
+              </motion.g>
+            </g>
+          </svg>
         </motion.div>
       </div>
     </section>
