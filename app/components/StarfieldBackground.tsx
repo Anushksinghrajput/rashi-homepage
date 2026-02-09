@@ -13,7 +13,7 @@ export default function StarfieldBackground() {
     if (!canvasRef.current) return;
 
     let animationId: number;
-    let stars: { x: number; y: number; r: number; hue: number; twinkle: number }[] = [];
+    let stars: { x: number; y: number; r: number; hue: number; twinkle: number; driftX: number; driftY: number }[] = [];
 
     function resize() {
       const c = canvasRef.current;
@@ -34,6 +34,8 @@ export default function StarfieldBackground() {
         r: Math.random() * 1.2 + 0.3,
         hue: Math.random() * 60 + 180,
         twinkle: Math.random() * Math.PI * 2,
+        driftX: (Math.random() - 0.5) * 0.08,
+        driftY: (Math.random() - 0.5) * 0.04,
       }));
     }
 
@@ -46,6 +48,8 @@ export default function StarfieldBackground() {
       context.fillRect(0, 0, w, h);
       const t = Date.now() * 0.001;
       stars.forEach((star) => {
+        star.x = (star.x + star.driftX + w) % w;
+        star.y = (star.y + star.driftY + h) % h;
         const alpha = 0.3 + 0.5 * Math.sin(star.twinkle + t * 2) ** 2;
         context.beginPath();
         context.arc(star.x, star.y, star.r, 0, Math.PI * 2);

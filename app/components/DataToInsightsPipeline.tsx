@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { CONTAINER, SECTION_BORDER, SECTION_PADDING } from "@/lib/layout";
-import RashiLogo from "./RashiLogo";
 
 const DATA_ICONS = [
   { label: "Globe", color: "bg-amber-400" },
@@ -58,11 +57,11 @@ export default function DataToInsightsPipeline() {
               ))}
             </div>
 
-            {/* Center: brand label only (single logo per page is in navbar) */}
+            {/* Center: text label only (single logo per page is in navbar) */}
             <div className="flex items-center gap-4">
               <div className="h-px w-12 bg-white/30 sm:w-16" />
-              <div className="rounded-xl border-2 border-[var(--neon-pink)] px-6 py-3 shadow-[0_0_30px_rgba(255,0,128,0.3)]">
-                <RashiLogo variant="contact" href="/" className="h-10 w-auto object-contain" />
+              <div className="rounded-xl border-2 border-[var(--neon-pink)] bg-black/40 px-6 py-3 shadow-[0_0_30px_rgba(255,0,128,0.3)]">
+                <span className="text-lg font-bold text-white sm:text-xl">Rashi</span>
               </div>
               <div className="h-px w-12 bg-white/30 sm:w-16" />
             </div>

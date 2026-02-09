@@ -8,10 +8,9 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ContactForm from "./components/ContactForm";
 import WaitlistForm from "./components/WaitlistForm";
-import RashiLogo from "./components/RashiLogo";
 import StarfieldBackground from "./components/StarfieldBackground";
 import HowRashiThinks from "./components/HowRashiThinks";
-import DataToInsightsPipeline from "./components/DataToInsightsPipeline";
+import FlowDiagramSection from "./components/FlowDiagramSection";
 import GradientCtaBand from "./components/GradientCtaBand";
 import IntroducingRashiCarousel from "./components/IntroducingRashiCarousel";
 import ScrollReveal from "./components/ScrollReveal";
@@ -26,24 +25,16 @@ export default function Home() {
       <Header />
 
       <main className="relative z-10">
-        {/* Hero — no top border; next section provides boundary */}
+        {/* Hero — single logo is in navbar only; no duplicate here */}
         <section
           id="hero"
           className={`relative overflow-hidden ${CONTAINER} py-20 sm:py-28 lg:py-36`}
         >
           <div className="max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="mb-8"
-            >
-              <RashiLogo variant="heroLarge" href="/" />
-            </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.5 }}
               className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
             >
                 <span className="bg-gradient-to-r from-[var(--neon-pink)] to-[#ff4080] bg-clip-text text-transparent">
@@ -57,15 +48,15 @@ export default function Home() {
               <motion.p
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-6 max-w-2xl text-xl text-white/90 sm:text-2xl"
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="mt-6 max-w-2xl text-xl leading-relaxed text-white/90 sm:text-2xl"
               >
                 Let AI do the Heavy Lifting and Unlock Deeper Insights Faster
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
                 className="mt-10"
               >
                 <a
@@ -78,33 +69,17 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Flow diagram: three nodes + curved path with arrow (no overlap) */}
+        <FlowDiagramSection />
+
         {/* How Rashi Thinks — accordion insights */}
         <HowRashiThinks />
-
-        {/* Flow diagram: Universe of Data → Unique Insights → Accelerated Decision Making */}
-        <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
-          <ScrollReveal>
-            <h2 className="sr-only">
-              Data flow: Universe of Data to Unique Insights to Accelerated Decision Making
-            </h2>
-            <div className="mx-auto max-w-5xl">
-              <Image
-                src="/flow-diagram.svg"
-                alt="Universe of Data, Analyze & Cluster; Unique Insights, Extract & Generate; Accelerated Decision Making, Interpret & Learn"
-                width={1920}
-                height={1080}
-                className="h-auto w-full rounded-lg object-contain"
-                priority={false}
-              />
-            </div>
-          </ScrollReveal>
-        </section>
 
         {/* Value proposition */}
         <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
           <div className="max-w-4xl text-left">
             <ScrollReveal>
-              <h2 className="text-3xl font-bold leading-snug text-white sm:text-4xl lg:text-5xl">
+              <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
                 Our algos empower people to make better decisions faster
               </h2>
             </ScrollReveal>
@@ -155,9 +130,6 @@ export default function Home() {
             </div>
           </ScrollReveal>
         </section>
-
-        {/* Data-to-insights pipeline graphic */}
-        <DataToInsightsPipeline />
 
         {/* Full-width orange-to-pink gradient CTA band */}
         <GradientCtaBand />
