@@ -5,7 +5,7 @@ const RASHI_LOGO_SRC =
   "https://rashi.ai/wp-content/uploads/2023/06/Rashi-Logo-Transparent-e1685619567554-1024x632.png";
 
 type RashiLogoProps = {
-  variant?: "navbar" | "hero" | "contact" | "heroLarge" | "toolbar";
+  variant?: "navbar" | "hero" | "contact" | "heroLarge" | "heroXl" | "toolbar";
   href?: string;
   className?: string;
 };
@@ -14,9 +14,10 @@ export default function RashiLogo({ variant = "navbar", href = "/", className = 
   const isNavbar = variant === "navbar";
   const isHero = variant === "hero";
   const isHeroLarge = variant === "heroLarge";
+  const isHeroXl = variant === "heroXl";
   const isToolbar = variant === "toolbar";
-  const width = isHeroLarge ? 420 : isHero ? 200 : isNavbar ? 120 : isToolbar ? 80 : 140;
-  const height = isHeroLarge ? 250 : isHero ? 124 : isNavbar ? 74 : isToolbar ? 50 : 87;
+  const width = isHeroXl ? 520 : isHeroLarge ? 420 : isHero ? 200 : isNavbar ? 120 : isToolbar ? 80 : 140;
+  const height = isHeroXl ? 321 : isHeroLarge ? 250 : isHero ? 124 : isNavbar ? 74 : isToolbar ? 50 : 87;
 
   const content = (
     <Image
@@ -25,8 +26,8 @@ export default function RashiLogo({ variant = "navbar", href = "/", className = 
       width={width}
       height={height}
       className={`object-contain object-left ${className}`}
-      sizes={isHeroLarge ? "420px" : isHero ? "(max-width: 640px) 160px, 200px" : isNavbar ? "120px" : isToolbar ? "80px" : "140px"}
-      priority={isNavbar || isHeroLarge || isToolbar}
+      sizes={isHeroXl ? "520px" : isHeroLarge ? "420px" : isHero ? "(max-width: 640px) 160px, 200px" : isNavbar ? "120px" : isToolbar ? "80px" : "140px"}
+      priority={isNavbar || isHeroLarge || isHeroXl || isToolbar}
     />
   );
 

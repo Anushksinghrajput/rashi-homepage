@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import RashiLogo from "./RashiLogo";
 
 export default function Header() {
   const pathname = usePathname();
@@ -25,9 +24,8 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <RashiLogo variant="navbar" href="/" />
-
-        {/* Desktop nav */}
+        <div className="min-w-0 flex-1" aria-hidden="true" />
+        {/* Desktop nav — right side */}
         <nav className="hidden items-center gap-8 md:flex">
           {navLinks.map((item) =>
             "children" in item ? (

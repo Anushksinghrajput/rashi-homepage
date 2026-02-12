@@ -8,11 +8,12 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ContactForm from "./components/ContactForm";
 import WaitlistForm from "./components/WaitlistForm";
+import RashiLogo from "./components/RashiLogo";
 import StarfieldBackground from "./components/StarfieldBackground";
 import HowRashiThinks from "./components/HowRashiThinks";
 import FlowDiagramSection from "./components/FlowDiagramSection";
 import GradientCtaBand from "./components/GradientCtaBand";
-import IntroducingRashiCarousel from "./components/IntroducingRashiCarousel";
+import UseCaseCardsSection from "./components/UseCaseCardsSection";
 import ScrollReveal from "./components/ScrollReveal";
 
 const industries =
@@ -25,12 +26,20 @@ export default function Home() {
       <Header />
 
       <main className="relative z-10">
-        {/* Hero — single logo is in navbar only; no duplicate here */}
+        {/* Hero — logo above headline */}
         <section
           id="hero"
           className={`relative overflow-hidden ${CONTAINER} py-20 sm:py-28 lg:py-36`}
         >
           <div className="max-w-4xl">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 sm:mb-10"
+            >
+              <RashiLogo variant="heroXl" href="/" className="h-auto w-full max-w-[420px] sm:max-w-[480px] lg:max-w-[520px]" />
+            </motion.div>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -134,8 +143,8 @@ export default function Home() {
         {/* Full-width orange-to-pink gradient CTA band */}
         <GradientCtaBand />
 
-        {/* Introducing Rashi - horizontal carousel */}
-        <IntroducingRashiCarousel />
+        {/* Where ChatGPT / Rashi — use case cards with motion */}
+        <UseCaseCardsSection />
 
         {/* Text: Rashi is developing... + LLM paragraph */}
         <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING_TIGHT} ${CONTAINER}`}>
@@ -185,21 +194,14 @@ export default function Home() {
               </h2>
             </ScrollReveal>
             <ScrollReveal delay={0.1}>
-              <div className="mt-12 flex flex-wrap items-center justify-center gap-8">
-                {/* Neon robot placeholders - pink, green, blue */}
-                {[
-                  { color: "border-pink-500 shadow-[0_0_30px_rgba(236,72,153,0.4)]", label: "Pink" },
-                  { color: "border-green-400 shadow-[0_0_30px_rgba(74,222,128,0.4)]", label: "Green" },
-                  { color: "border-cyan-400 shadow-[0_0_30px_rgba(34,211,238,0.4)]", label: "Blue" },
-                ].map((robot, i) => (
-                  <div
-                    key={i}
-                    className={`flex h-24 w-24 items-center justify-center rounded-xl border-2 bg-black/50 ${robot.color} text-2xl transition-all hover:scale-105`}
-                    title={`Neon ${robot.label} robot`}
-                  >
-                    <span className="text-3xl opacity-80">🤖</span>
-                  </div>
-                ))}
+              <div className="mx-auto mt-12 max-w-4xl">
+                <Image
+                  src="/neon-robots-blogs.png"
+                  alt="Neon-style robots: pink, green, and blue futuristic characters"
+                  width={1200}
+                  height={400}
+                  className="h-auto w-full rounded-lg object-contain"
+                />
               </div>
             </ScrollReveal>
             <ScrollReveal delay={0.2}>
