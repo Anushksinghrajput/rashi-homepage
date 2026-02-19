@@ -6,7 +6,7 @@ import StarfieldBackground from "../../components/StarfieldBackground";
 
 export default function ProductDesignPage() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-black text-white">
+    <div className="relative min-h-screen flex flex-col bg-[#0a0a0a] text-white">
       <StarfieldBackground />
       <Header />
 

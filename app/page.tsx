@@ -21,7 +21,7 @@ const industries =
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-black text-white">
+    <div className="relative min-h-screen flex flex-col bg-[#0a0a0a] text-white">
       <StarfieldBackground />
       <Header />
 
@@ -121,20 +121,24 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Data sources to algorithmic insights — tree vision (after our algos text) */}
-        <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
+        {/* Tree diagram — floats on starfield; black blends away, starfield shows through */}
+        <section className={`relative bg-transparent ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
           <ScrollReveal>
             <h2 className="sr-only">
               From data sources to real-time algorithmic insights across industries
             </h2>
-            <div className="mx-auto max-w-5xl">
+            <div
+              className="relative mx-auto max-w-5xl bg-transparent"
+              style={{ mixBlendMode: "screen" }}
+            >
               <Image
-                src="/rashi-tree-vision.png"
+                src="https://rashi.ai/wp-content/uploads/2023/06/Group-176.svg"
                 alt="Define your data sources and topics, process with Rashi, and get algorithmic insights that update in real-time across Tech, Manufacturing, Medicine, Retail, Telco, Media, and Financial Markets"
                 width={1200}
                 height={675}
-                className="h-auto w-full rounded-lg object-contain"
+                className="h-auto w-full object-contain"
                 priority={false}
+                unoptimized
               />
             </div>
           </ScrollReveal>

@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${greatVibes.variable} font-sans antialiased bg-black text-white`}>
+      <body className={`${inter.variable} ${greatVibes.variable} font-sans antialiased bg-[#0a0a0a] text-white`}>
         <a href="#hero" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[100] focus:rounded focus:bg-[var(--neon-pink)] focus:px-4 focus:py-2 focus:text-white">
           Skip to content
         </a>

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
+  --background: #0a0a0a;
   --foreground: #ffffff;
   --muted: #94a3b8;
   --border: #1e293b;
@@ -63,6 +63,51 @@ body {
 }
 .btn-pulse {
   animation: btn-pulse 2s ease-in-out infinite;
+}
+
+/* CTA band: blooming text (soft halo glow) */
+.cta-heading-bloom {
+  text-shadow:
+    0 0 12px rgba(255, 255, 255, 0.9),
+    0 0 28px rgba(255, 255, 255, 0.6),
+    0 0 48px rgba(255, 255, 255, 0.4),
+    0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* CTA band: Join Waitlist shiny animated button */
+@keyframes cta-btn-glow {
+  0%, 100% {
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.5), 0 0 48px rgba(139, 92, 246, 0.4), 0 0 72px rgba(99, 102, 241, 0.25);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(255, 255, 255, 0.7), 0 0 56px rgba(139, 92, 246, 0.55), 0 0 88px rgba(99, 102, 241, 0.35);
+  }
+}
+@keyframes cta-btn-shimmer {
+  0% { transform: translateX(-100%); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateX(100%); opacity: 0; }
+}
+.cta-join-btn {
+  animation: cta-btn-glow 2.5s ease-in-out infinite;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+.cta-join-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 50%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+  animation: cta-btn-shimmer 2.5s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: 9999px;
 }
 
 /* Introducing Rashi card hover glow */

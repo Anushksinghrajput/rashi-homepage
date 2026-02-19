@@ -2,9 +2,9 @@
 
 import { useEffect, useRef } from "react";
 
-const STAR_COUNT = 520;
+const STAR_COUNT = 320;
 const DUST_COUNT = 45;
-const STAR_LAYERS = 3; // depth: 0 = far (small, dim), 1 = mid, 2 = near (brighter, larger)
+const STAR_LAYERS = 3; // depth: far (small, dim) → near (brighter, larger, shinier)
 
 export default function StarfieldBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -18,12 +18,12 @@ export default function StarfieldBackground() {
       x: number;
       y: number;
       r: number;
-      alphaBase: number;
+      hue: number;
+      saturation: number;
       twinklePhase: number;
       twinkleSpeed: number;
-      driftX: number;
-      driftY: number;
       layer: number;
+      brightness: number;
     };
     type Dust = {
       x: number;
@@ -52,17 +52,17 @@ export default function StarfieldBackground() {
 
       stars = Array.from({ length: STAR_COUNT }, () => {
         const layer = Math.floor(Math.random() * STAR_LAYERS);
-        const layerScale = 0.4 + (layer / STAR_LAYERS) * 0.8;
+        const isBright = Math.random() < 0.2; // more bright "close" stars for shine
         return {
           x: Math.random() * w,
           y: Math.random() * h,
-          r: (Math.random() * 0.8 + 0.2) * (1 + layer * 0.4),
-          alphaBase: 0.2 + layer * 0.2 + Math.random() * 0.15,
+          r: (isBright ? 1.2 + Math.random() * 1.2 : 0.3 + Math.random() * 0.7) + layer * 0.25,
+          hue: Math.random() < 0.7 ? 200 + Math.random() * 30 : 45 + Math.random() * 25,
+          saturation: 15 + Math.random() * 25,
           twinklePhase: Math.random() * Math.PI * 2,
-          twinkleSpeed: 0.3 + Math.random() * 0.5,
-          driftX: (Math.random() - 0.5) * 0.03,
-          driftY: (Math.random() - 0.5) * 0.02,
+          twinkleSpeed: 1.2 + Math.random() * 1.8,
           layer,
+          brightness: isBright ? 0.92 + Math.random() * 0.08 : 0.6 + Math.random() * 0.35,
         };
       });
 
@@ -83,25 +83,16 @@ export default function StarfieldBackground() {
       const { w, h } = sizeRef.current;
       const t = Date.now() * 0.001;
 
-      ctx.fillStyle = "#000000";
+      ctx.fillStyle = "#0a0a0a";
       ctx.fillRect(0, 0, w, h);
 
-      // Depth-of-field: draw far layer first (slightly softer look via smaller radius)
+      // Stars: simple points, blinking only
       stars.forEach((star) => {
-        star.x = (star.x + star.driftX + w) % w;
-        star.y = (star.y + star.driftY + h) % h;
-        const twinkle = 0.85 + 0.15 * Math.sin(star.twinklePhase + t * star.twinkleSpeed) ** 2;
-        const alpha = Math.min(1, star.alphaBase * twinkle);
-        const x = star.x;
-        const y = star.y;
-        const r = star.r;
-        const gradient = ctx.createRadialGradient(x, y, 0, x, y, r * 2);
-        gradient.addColorStop(0, `rgba(255, 255, 255, ${alpha})`);
-        gradient.addColorStop(0.4, `rgba(240, 245, 255, ${alpha * 0.6})`);
-        gradient.addColorStop(1, "rgba(255, 255, 255, 0)");
+        const blink = 0.5 + 0.5 * Math.sin(star.twinklePhase + t * star.twinkleSpeed) ** 2;
+        const alpha = 0.2 + 0.8 * blink;
         ctx.beginPath();
-        ctx.arc(x, y, r * 2, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = `hsla(${star.hue}, ${star.saturation}%, 92%, ${alpha})`;
         ctx.fill();
       });
 

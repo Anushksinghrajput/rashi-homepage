@@ -7,12 +7,13 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import StarfieldBackground from "../../components/StarfieldBackground";
 import ScrollReveal from "../../components/ScrollReveal";
+import InfluencerBanner from "../../components/InfluencerBanner";
 
 const GRID_GAP = "gap-8 lg:gap-12";
 
 export default function SalesMarketingPage() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-black text-white">
+    <div className="relative min-h-screen flex flex-col bg-[#0a0a0a] text-white">
       <StarfieldBackground />
       <Header />
 
@@ -74,33 +75,12 @@ export default function SalesMarketingPage() {
           </div>
         </section>
 
-        {/* Your Influencer + thumbnails */}
+        {/* Influencer banner — Solutions: Sales & Marketing (images + AI-style layout) */}
         <section className={`${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
-          <div className={`grid grid-cols-1 ${GRID_GAP} lg:grid-cols-2`}>
-            <ScrollReveal>
-              <div className="flex min-h-[200px] items-center justify-center rounded-xl bg-amber-500/90 px-8 py-12 text-center sm:min-h-[240px]">
-                <p className="text-2xl font-bold text-white sm:text-3xl">
-                  Your Influencer is Your Product
-                </p>
-              </div>
-            </ScrollReveal>
-            <ScrollReveal delay={0.1}>
-              <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="aspect-[3/4] rounded-lg border border-white/20 bg-white/5"
-                    aria-hidden
-                  />
-                ))}
-              </div>
-            </ScrollReveal>
-          </div>
-          <ScrollReveal delay={0.15}>
-            <div className="mt-8 rounded-xl bg-cyan-600/80 px-6 py-5 text-center sm:px-8 sm:py-6">
-              <p className="text-lg font-medium text-white sm:text-xl">
-                Targeted Influencer Marketing is the new Platform Ad Spend
-              </p>
+          <ScrollReveal>
+            <div className="relative">
+              <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[var(--neon-pink)]/20 via-cyan-500/10 to-[var(--neon-pink)]/20 opacity-60 blur-xl" />
+              <InfluencerBanner />
             </div>
           </ScrollReveal>
         </section>

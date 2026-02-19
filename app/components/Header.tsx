@@ -15,6 +15,7 @@ export default function Header() {
     {
       label: "Solutions",
       children: [
+        { href: "/solutions", label: "Overview" },
         { href: "/solutions/sales-marketing", label: "Sales & Marketing" },
         { href: "/solutions/product-design", label: "Product Design" },
       ],
@@ -120,6 +121,9 @@ export default function Header() {
               Blogs
             </Link>
             <span className="px-3 py-2 text-sm font-medium text-white/50">Solutions</span>
+            <Link href="/solutions" className="rounded-lg px-3 py-2 pl-6 text-white/90 hover:bg-white/5" onClick={() => setMobileOpen(false)}>
+              Overview
+            </Link>
             <Link href="/solutions/sales-marketing" className="rounded-lg px-3 py-2 pl-6 text-white/90 hover:bg-white/5" onClick={() => setMobileOpen(false)}>
               Sales & Marketing
             </Link>
