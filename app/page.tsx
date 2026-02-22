@@ -14,6 +14,7 @@ import HowRashiThinks from "./components/HowRashiThinks";
 import FlowDiagramSection from "./components/FlowDiagramSection";
 import GradientCtaBand from "./components/GradientCtaBand";
 import UseCaseCardsSection from "./components/UseCaseCardsSection";
+import IntroducingRashiCarousel from "./components/IntroducingRashiCarousel";
 import ScrollReveal from "./components/ScrollReveal";
 
 const industries =
@@ -121,24 +122,36 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Tree diagram — floats on starfield; black blends away, starfield shows through */}
+        {/* Tree diagram — bloom + animated flow on connector lines, floats on starfield */}
         <section className={`relative bg-transparent ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
           <ScrollReveal>
             <h2 className="sr-only">
               From data sources to real-time algorithmic insights across industries
             </h2>
             <div
-              className="relative mx-auto max-w-5xl bg-transparent"
+              className="relative mx-auto max-w-5xl overflow-hidden bg-transparent"
               style={{ mixBlendMode: "screen" }}
             >
-              <Image
-                src="https://rashi.ai/wp-content/uploads/2023/06/Group-176.svg"
-                alt="Define your data sources and topics, process with Rashi, and get algorithmic insights that update in real-time across Tech, Manufacturing, Medicine, Retail, Telco, Media, and Financial Markets"
-                width={1200}
-                height={675}
-                className="h-auto w-full object-contain"
-                priority={false}
-                unoptimized
+              <div className="tree-diagram-bloom">
+                <Image
+                  src="https://rashi.ai/wp-content/uploads/2023/06/Group-176.svg"
+                  alt="Define your data sources and topics, process with Rashi, and get algorithmic insights that update in real-time across Tech, Manufacturing, Medicine, Retail, Telco, Media, and Financial Markets"
+                  width={1200}
+                  height={675}
+                  className="h-auto w-full object-contain"
+                  priority={false}
+                  unoptimized
+                />
+              </div>
+              {/* Animated flow overlay — suggests motion along connecting lines */}
+              <div
+                className="tree-flow-overlay absolute inset-0"
+                aria-hidden
+              />
+              <div
+                className="tree-flow-overlay absolute inset-0"
+                style={{ animationDelay: "2s" }}
+                aria-hidden
               />
             </div>
           </ScrollReveal>
@@ -146,6 +159,9 @@ export default function Home() {
 
         {/* Full-width orange-to-pink gradient CTA band */}
         <GradientCtaBand />
+
+        {/* Introducing Rashi — infinite marquee carousel */}
+        <IntroducingRashiCarousel />
 
         {/* Where ChatGPT / Rashi — use case cards with motion */}
         <UseCaseCardsSection />

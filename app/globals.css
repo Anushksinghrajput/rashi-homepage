@@ -110,7 +110,50 @@ body {
   border-radius: 9999px;
 }
 
-/* Introducing Rashi card hover glow */
+/* Introducing Rashi: infinite marquee animation (GPU-accelerated) */
+@keyframes introducing-marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+.introducing-marquee-track {
+  animation: introducing-marquee 50s linear infinite;
+  will-change: transform;
+}
+.introducing-marquee-track:hover {
+  animation-play-state: paused;
+}
+/* Mobile: no marquee, parent wrapper handles swipe scroll */
+@media (max-width: 767px) {
+  .introducing-marquee-track {
+    animation: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .introducing-marquee-track {
+    animation: none;
+  }
+}
+
+/* Introducing Rashi card: glassmorphic, glow, hover tilt */
+.introducing-rashi-card {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.35s ease,
+    filter 0.35s ease;
+  transform: translateZ(0);
+}
+.introducing-rashi-card:hover {
+  transform: translate3d(0, -6px, 0) perspective(800px) rotateX(2deg) rotateY(3deg) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35),
+    0 0 24px rgba(255, 0, 128, 0.2),
+    0 0 48px rgba(168, 85, 247, 0.15);
+}
+@media (prefers-reduced-motion: reduce) {
+  .introducing-rashi-card:hover {
+    transform: translate3d(0, -4px, 0) scale(1.02);
+  }
+}
+
+/* Introducing Rashi card hover glow (legacy) */
 .introducing-card-hover {
   transition: box-shadow 0.3s ease, transform 0.25s ease, border-color 0.25s ease;
 }
@@ -216,6 +259,36 @@ body {
 
 .animate-dust-drift {
   animation: dust-drift 12s ease-in-out infinite;
+}
+
+/* Tree diagram: bloom glow + animated flow along connectors */
+@keyframes tree-line-flow {
+  0% { opacity: 0; transform: translateX(-20%); }
+  15% { opacity: 0.6; }
+  50% { opacity: 1; }
+  85% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateX(120%); }
+}
+.tree-diagram-bloom {
+  filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.4))
+    drop-shadow(0 0 28px rgba(139, 92, 246, 0.3))
+    drop-shadow(0 0 44px rgba(168, 85, 247, 0.2));
+}
+.tree-flow-overlay {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 25%,
+    rgba(139, 92, 246, 0.12) 40%,
+    rgba(99, 102, 241, 0.35) 50%,
+    rgba(139, 92, 246, 0.12) 60%,
+    transparent 75%,
+    transparent 100%
+  );
+  background-size: 25% 100%;
+  background-repeat: no-repeat;
+  animation: tree-line-flow 5s ease-in-out infinite;
+  pointer-events: none;
 }
 
 /* Focus styles for accessibility */
