@@ -1,21 +1,32 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { CONTAINER, SECTION_BORDER, SECTION_PADDING } from "@/lib/layout";
 
 /**
- * Three-stage flow matching rashi.ai reference:
- * Universe of Data → Unique Insights → Accelerated Decision Making.
- * Single SVG with wavy path (arrow at end), three circles, and action labels.
- * Path and labels positioned so they do not overlap circles or text.
+ * Three-stage flow: Universe of Data → Unique Insights → Accelerated Decision Making.
+ * Continuous animated flow along the center line, scroll-linked movement.
  */
 const VIEWBOX = "0 0 1920 1080";
 const PATH_D =
   "M-792.857,5.143 C-792.857,5.143 -533.142,-642.858 -260.571,2.571 C12,648 222.857,7.714 228,0 C233.117,-7.676 439.361,-641.647 730.204,-14.639";
+const PATH_LENGTH = 1200; // approx for stroke-dash purposes
 
 export default function FlowDiagramSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+
+  const flowOffset = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [0, 300, 600, 900, 1200]);
+  const flowOpacity = useTransform(scrollYProgress, [0.1, 0.3, 0.5, 0.7, 0.9], [0.4, 0.9, 1, 0.9, 0.4]);
+
   return (
     <section
+      ref={sectionRef}
       className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}
       aria-labelledby="flow-diagram-heading"
     >
@@ -41,27 +52,71 @@ export default function FlowDiagramSection() {
             >
               <path fill="rgb(255,255,255)" d="M0 0 L10 5 L0 10 Z" />
             </marker>
+            <linearGradient id="flow-line-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgb(238,11,94)" stopOpacity="1" />
+              <stop offset="50%" stopColor="rgb(255,255,255)" stopOpacity="1" />
+              <stop offset="100%" stopColor="rgb(255,167,14)" stopOpacity="1" />
+            </linearGradient>
+            <filter id="flow-glow">
+              <feGaussianBlur stdDeviation="2" result="blur" />
+              <feMerge>
+                <feMergeNode in="blur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
           </defs>
 
-          {/* Wavy connecting path (centered at 960,540); arrow at end */}
+          {/* Wavy connecting path — base white line */}
           <g transform="translate(960, 540)">
             <motion.path
               d={PATH_D}
               fill="none"
+              stroke="rgba(255,255,255,0.4)"
+              strokeWidth="6"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              initial={{ pathLength: 0 }}
+              whileInView={{ pathLength: 1 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
+            />
+            <path
+              d={PATH_D}
+              fill="none"
               stroke="rgb(255,255,255)"
               strokeWidth="4"
-              strokeLinecap="butt"
-              strokeLinejoin="miter"
+              strokeLinecap="round"
+              strokeLinejoin="round"
               markerEnd="url(#flow-arrow-ref)"
-              initial={{ pathLength: 0, opacity: 0.9 }}
-              whileInView={{ pathLength: 1, opacity: 1 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{
-                pathLength: { duration: 1.4, ease: [0.25, 0.1, 0.25, 1] },
-                opacity: { duration: 0.3 },
-              }}
+              style={{ opacity: 0.95 }}
             />
           </g>
+
+          {/* Continuous flow — gradient strokes, animated dashes (data/insights flowing) */}
+          <g transform="translate(960, 540)" style={{ filter: "url(#flow-glow)" }}>
+            <path
+              d={PATH_D}
+              fill="none"
+              stroke="url(#flow-line-gradient)"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="flow-line-animated-slow"
+              style={{ opacity: 0.6 }}
+            />
+            <path
+              d={PATH_D}
+              fill="none"
+              stroke="url(#flow-line-gradient)"
+              strokeWidth="4"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="flow-line-animated"
+            />
+          </g>
+
+          {/* Scroll-driven flow — bright segment follows scroll up/down */}
+          <FlowPathScrollDriven pathD={PATH_D} pathLength={PATH_LENGTH} flowOffset={flowOffset} flowOpacity={flowOpacity} />
 
           {/* Pink circle — Universe of Data */}
           <g transform="matrix(1.07,0,0,1.07,504,286)">
@@ -171,5 +226,36 @@ export default function FlowDiagramSection() {
         </svg>
       </div>
     </section>
+  );
+}
+
+function FlowPathScrollDriven({
+  pathD,
+  pathLength,
+  flowOffset,
+  flowOpacity,
+}: {
+  pathD: string;
+  pathLength: number;
+  flowOffset: ReturnType<typeof useTransform<number>>;
+  flowOpacity: ReturnType<typeof useTransform<number>>;
+}) {
+  return (
+    <g transform="translate(960, 540)">
+      <motion.path
+        d={pathD}
+        fill="none"
+        stroke="url(#flow-line-gradient)"
+        strokeWidth="6"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeDasharray={`${100} ${pathLength}`}
+        style={{
+          filter: "url(#flow-glow)",
+          opacity: flowOpacity,
+          strokeDashoffset: flowOffset,
+        }}
+      />
+    </g>
   );
 }

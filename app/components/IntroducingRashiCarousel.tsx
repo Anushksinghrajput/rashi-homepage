@@ -252,7 +252,7 @@ export default function IntroducingRashiCarousel() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5 }}
-          className="text-center text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl"
+          className="section-heading-accent mx-auto text-center text-2xl font-bold leading-snug text-white sm:text-3xl lg:text-4xl"
         >
           Introducing Rashi
         </motion.h2>

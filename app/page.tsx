@@ -22,7 +22,7 @@ const industries =
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#0a0a0a] text-white">
+    <div className="noise-overlay relative min-h-screen flex flex-col bg-[#0a0a0a] text-white">
       <StarfieldBackground />
       <Header />
 
@@ -47,10 +47,10 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl xl:text-7xl"
             >
-                <span className="bg-gradient-to-r from-[var(--neon-pink)] to-[#ff4080] bg-clip-text text-transparent">
+                <span className="hero-gradient-glow inline-block bg-gradient-to-r from-[var(--neon-pink)] to-[#ff4080] bg-clip-text text-transparent">
                   Generative
                 </span>{" "}
-                <span className="bg-gradient-to-r from-[var(--neon-orange)] to-[var(--neon-yellow)] bg-clip-text text-transparent">
+                <span className="hero-gradient-glow inline-block bg-gradient-to-r from-[var(--neon-orange)] to-[var(--neon-yellow)] bg-clip-text text-transparent" style={{ animationDelay: "0.5s" }}>
                   Insights
                 </span>{" "}
                 <span className="text-white">at your Fingertips.</span>
@@ -71,7 +71,7 @@ export default function Home() {
               >
                 <a
                   href="#waitlist-form"
-                  className="btn-gradient btn-pulse inline-flex rounded-[9999px] px-8 py-4 text-lg font-medium text-white"
+                  className="btn-gradient btn-pulse animate-float-subtle inline-flex rounded-[9999px] px-8 py-4 text-lg font-medium text-white"
                 >
                   Join Waitlist
                 </a>
@@ -89,7 +89,7 @@ export default function Home() {
         <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER}`}>
           <div className="max-w-4xl text-left">
             <ScrollReveal>
-              <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+              <h2 className="section-heading-accent section-heading-accent-left text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
                 Our algos empower people to make better decisions faster
               </h2>
             </ScrollReveal>
@@ -195,7 +195,7 @@ export default function Home() {
                 and building more profound insights for leaders in our{" "}
                 <Link
                   href="/blogs"
-                  className="font-medium text-[var(--neon-pink)] hover:underline"
+                  className="link-gradient-underline font-medium text-[var(--neon-pink)]"
                 >
                   blog
                 </Link>
@@ -209,7 +209,7 @@ export default function Home() {
         <section className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER} bg-white/[0.02]`}>
           <div>
             <ScrollReveal>
-              <h2 className="text-center text-2xl font-bold leading-snug text-white sm:text-3xl">
+              <h2 className="section-heading-accent mx-auto text-center text-2xl font-bold leading-snug text-white sm:text-3xl">
                 Blogs
               </h2>
             </ScrollReveal>
@@ -232,43 +232,65 @@ export default function Home() {
                 </p>
                 <Link
                   href="/blogs"
-                  className="mt-6 inline-block font-medium text-[var(--neon-pink)] hover:underline"
+                  className="link-gradient-underline mt-6 inline-block font-medium text-[var(--neon-pink)]"
                 >
                   Read More →
                 </Link>
                 <div className="mt-8">
-                  <Link
-                    href="/blogs"
-                    className="inline-flex rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-colors hover:border-[var(--neon-pink)] hover:bg-white/5"
-                  >
-                    Read all Blogs
-                  </Link>
+                <Link
+                  href="/blogs"
+                  className="link-gradient-underline inline-flex rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-colors hover:border-[var(--neon-pink)] hover:bg-white/5"
+                >
+                  Read all Blogs
+                </Link>
                 </div>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* Contact us */}
+        {/* Contact us — larger, with in/out animation */}
         <section
           id="contact"
-          className={`relative ${SECTION_BORDER} ${SECTION_PADDING} ${CONTAINER_NARROW} bg-white/[0.02]`}
+          className={`relative overflow-hidden ${SECTION_BORDER} py-20 sm:py-28 lg:py-32 ${CONTAINER} bg-white/[0.02]`}
         >
-          <div className="text-center">
-            <ScrollReveal>
-              <h2 className="text-2xl font-bold leading-snug text-white">Contact us</h2>
-            </ScrollReveal>
-            <ScrollReveal delay={0.15}>
-              <p className="mt-2 text-white/60">
-                We frequently check and reply for our inbox for your responses.
-              </p>
-            </ScrollReveal>
-            <ScrollReveal delay={0.2}>
-              <div className="mt-10">
-                <ContactForm />
-              </div>
-            </ScrollReveal>
-          </div>
+          <motion.div
+            className="contact-card-breathe mx-auto max-w-2xl rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-12 backdrop-blur-sm sm:max-w-xl sm:px-10 sm:py-16 lg:max-w-2xl lg:px-14 lg:py-20"
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, margin: "-80px", amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+          >
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: 0.15 }}
+            >
+              <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl">
+                Contact us
+              </h2>
+            </motion.div>
+            <motion.p
+              className="mt-4 whitespace-nowrap text-center text-base text-white/70 sm:text-lg lg:mt-6 lg:text-xl"
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: 0.25 }}
+            >
+              We frequently check and reply to our inbox for your responses.
+            </motion.p>
+            <motion.div
+              className="mt-10 sm:mt-12 lg:mt-14"
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-40px" }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+            >
+              <ContactForm />
+            </motion.div>
+          </motion.div>
         </section>
 
         {/* Waitlist */}

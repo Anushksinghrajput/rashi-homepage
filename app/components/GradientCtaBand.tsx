@@ -8,13 +8,13 @@ const RASHI_LOGO_SRC =
 
 export default function GradientCtaBand() {
   return (
-    <section className="relative overflow-hidden py-20 sm:py-24 lg:py-28" id="waitlist">
-      {/* Orange → reddish-pink → fuchsia/magenta gradient with subtle vertical warmth */}
+    <section className="cta-band-shine relative overflow-hidden py-20 sm:py-24 lg:py-28" id="waitlist">
+      {/* Orange-dominant gradient left → right: orange → coral → pink → magenta → purple */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(105deg, #ff9500 0%, #ff7b35 18%, #ff5c7c 42%, #e91e8c 70%, #9c27b0 100%)",
+            "linear-gradient(105deg, #ff9500 0%, #ff8c00 20%, #ff7b35 45%, #ff5c7c 65%, #e91e8c 82%, #9c27b0 100%)",
         }}
         aria-hidden
       />
@@ -49,7 +49,7 @@ export default function GradientCtaBand() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5, delay: 0.12 }}
-          className="cta-heading-bloom whitespace-nowrap text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-[2.75rem] 2xl:text-[3.25rem]"
+          className="whitespace-nowrap text-2xl font-extrabold leading-tight tracking-tight text-white sm:text-3xl md:text-4xl lg:text-5xl xl:text-[2.75rem] 2xl:text-[3.25rem]"
         >
           Increasing your &quot;knowledge per unit of time&quot;
         </motion.h2>

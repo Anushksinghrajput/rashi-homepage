@@ -155,7 +155,7 @@ export default function HowRashiThinks() {
         >
           <h2
             id="how-rashi-heading"
-            className="text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.5rem]"
+            className="section-heading-accent mx-auto text-3xl font-bold leading-tight tracking-tight text-white sm:text-4xl lg:text-[2.5rem]"
           >
             How{" "}
             <span className="bg-gradient-to-r from-[var(--neon-pink)] via-[var(--neon-orange)] to-[var(--neon-yellow)] bg-clip-text text-transparent">

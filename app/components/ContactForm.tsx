@@ -27,7 +27,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto max-w-md space-y-4">
+    <form onSubmit={handleSubmit} className="mx-auto max-w-lg space-y-5">
       <div>
         <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-white/90">
           Name
@@ -38,7 +38,7 @@ export default function ContactForm() {
           required
           value={formData.name}
           onChange={(e) => setFormData((d) => ({ ...d, name: e.target.value }))}
-          className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-white placeholder:text-white/40 focus:border-[var(--neon-pink)] focus:outline-none focus:ring-1 focus:ring-[var(--neon-pink)]"
+          className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-[var(--neon-pink)] focus:outline-none focus:ring-1 focus:ring-[var(--neon-pink)] sm:py-3.5"
           placeholder="Your name"
         />
       </div>
@@ -52,7 +52,7 @@ export default function ContactForm() {
           required
           value={formData.email}
           onChange={(e) => setFormData((d) => ({ ...d, email: e.target.value }))}
-          className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-white placeholder:text-white/40 focus:border-[var(--neon-pink)] focus:outline-none focus:ring-1 focus:ring-[var(--neon-pink)]"
+          className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-[var(--neon-pink)] focus:outline-none focus:ring-1 focus:ring-[var(--neon-pink)] sm:py-3.5"
           placeholder="your@email.com"
         />
       </div>
@@ -66,7 +66,7 @@ export default function ContactForm() {
           rows={4}
           value={formData.message}
           onChange={(e) => setFormData((d) => ({ ...d, message: e.target.value }))}
-          className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-2.5 text-white placeholder:text-white/40 focus:border-[var(--neon-pink)] focus:outline-none focus:ring-1 focus:ring-[var(--neon-pink)]"
+          className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder:text-white/40 focus:border-[var(--neon-pink)] focus:outline-none focus:ring-1 focus:ring-[var(--neon-pink)] sm:py-3.5"
           placeholder="Your message"
         />
       </div>
@@ -79,7 +79,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full rounded-full bg-[var(--neon-pink)] px-6 py-3 font-medium text-white shadow-[0_0_20px_rgba(255,0,128,0.4)] transition-all hover:shadow-[0_0_30px_rgba(255,0,128,0.6)] disabled:opacity-60"
+        className="contact-send-btn w-full rounded-lg px-6 py-3.5 font-semibold disabled:opacity-60 sm:py-4"
       >
         {status === "sending" ? "Sending…" : "Send"}
       </button>
